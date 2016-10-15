@@ -1,46 +1,51 @@
-<em><html>
+<em>
+<html>
   <head>
     <title>signal</title>
-	<script src="brain-0.6.3.js"></script>
+	  <script src="brain-0.6.3.js"></script>
     <script src="https://js.leapmotion.com/leap-0.6.4.js"></script>
-  <div id=output></div>
-  <script>
-    var output = document.getElementById('output');
-	/*
-	function sleep(milliseconds) {
-	  var start = new Date().getTime();
-	  for (var i = 0; i < 1e7; i++) {
-	    if ((new Date().getTime() - start) > milliseconds){
-	      break;
-	    }
-	  }
-	}
-    Leap.loop(function (frame) {
-		
-      output.innerHTML = "Frame ID: " + frame.id  + "<br />"
-                  + "Hands: " + frame.hands.length + "<br />"
-                  + "Fingers: " + frame.fingers.length + "<br />";;
-				  sleep(1000);
-    });
-  */
-	var net = new brain.NeuralNetwork();
-	var net2 = new brain.NeuralNetwork();
-	
-	var x =1.05;
+    <div id=output></div>
+    <script>
+      var output = document.getElementById('output');
+    	function sleep(milliseconds) {
+    	  var start = new Date().getTime();
+    	  for (var i = 0; i < 1e7; i++) {
+    	    if ((new Date().getTime() - start) > milliseconds){
+    	      break;
+    	    }
+    	  }
+    	}
+        Leap.loop(function (frame) {
 
-	net.train([{input: [1, 0, 1], output: [x]},
-	           {input: [1, 0, 1], output: [x]},
-		 {input: [1, 0, 1], output: [x]},
-	           {input: [1, 0, 1], output: [x]},
-	           {input: [1, 0, 1], output: [x]},
-		 {input: [1, 0, 1], output: [x]},
-	           {input: [1, 0, 1], output: [x]},
-	           {input: [1, 0, 1], output: [x]},
-		 {input: [1, 0, 1], output: [x]},
-	           {input: [1, 0, 1], output: [x]},
-	           {input: [1, 0, 1], output: [x]}]);
-	output.innerHTML = net.run([1, 0, 1]);
-  </script>
+          output.innerHTML = "Frame ID: " + frame.id  + "<br />"
+                      + "Hands: " + frame.hands.length + "<br />"
+                      + "Fingers: " + frame.fingers.length + "<br />";;
+    				  sleep(1000);
+        });
+
+    	var net = new brain.NeuralNetwork();
+    	var net2 = new brain.NeuralNetwork();
+
+    	var x =1.05;
+
+    	net.train([{input: [1, 0, 1], output: [x]},
+    	           {input: [1, 0, 1], output: [x]},
+    		         {input: [1, 0, 1], output: [x]},
+    	           {input: [1, 0, 1], output: [x]},
+    	           {input: [1, 0, 1], output: [x]},
+    		         {input: [1, 0, 1], output: [x]},
+    	           {input: [1, 0, 1], output: [x]},
+    	           {input: [1, 0, 1], output: [x]},
+                 {input: [1, 0, 1], output: [x]},
+    	           {input: [1, 0, 1], output: [x]},
+    		         {input: [1, 0, 1], output: [x]},
+    	           {input: [1, 0, 1], output: [x]},
+    	           {input: [1, 0, 1], output: [x]},
+    		         {input: [1, 0, 1], output: [x]},
+    	           {input: [1, 0, 1], output: [x]},
+    	           {input: [1, 0, 1], output: [x]}]);
+    	output.innerHTML = net.run([1, 0, 1]);
+    </script>
   </head>
 </html>
 </em>
