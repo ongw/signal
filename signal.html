@@ -7,6 +7,7 @@
     <div id=output></div>
     <script>
       var output = document.getElementById('output');
+
     	function sleep(milliseconds) {
     	  var start = new Date().getTime();
     	  for (var i = 0; i < 1e7; i++) {
@@ -15,36 +16,65 @@
     	    }
     	  }
     	}
+output.innerHTML = "START1";
+
+      var net = new brain.NeuralNetwork();
+      var a = 0;
+output.innerHTML += "START1";
+
+      net.train([{input: [62.10843560644882, 43.46924327012031, 45.701842533018215, 43.0595044196563, 36.04854431169724], output: [a]}
+{input: [62.5960099542327, 46.42994636144743, 48.79860214215567, 45.15017856532131, 38.80190680106328], output: [a]}
+{input: [62.421134942113966, 46.51312395561063, 49.050836643246974, 45.76887173455776, 39.99543210564927], output: [a]}
+{input: [61.32476485311622, 46.97574795668505, 49.471081482821866, 46.34298074066881, 40.90246629788966], output: [a]}
+{input: [50.860177766201325, 45.375266381516724, 48.53699849314541, 45.683288463874845, 40.46921604263667], output: [a]}
+{input: [56.4668300238857, 41.82523395256027, 43.470205340490395, 40.94589021791565, 37.764738547703466], output: [a]}
+{input: [50.85378634693783, 41.39223969067148, 42.501704128187605, 39.29858863674367, 36.76263436221619], output: [a]}
+{input: [57.46831317595811, 41.297978624625216, 43.148723577992435, 39.50031333356737, 37.30999165545339], output: [a]}
+{input: [59.042388936847736, 40.36341290884603, 46.386760552769786, 42.42560057088172, 38.98163930685829], output: [a]}
+{input: [62.58515621886711, 37.54488229106599, 38.88568130109078, 37.00450640462592, 32.121899105750295], output: [a]}
+{input: [64.99180159573974, 47.88933078515506, 51.55853350135164, 47.36363744409947, 40.39985443134786], output: [a]}
+{input: [61.48039609322634, 73.2602565287619, 77.43327730866105, 72.67217323047385, 61.31223758108981], output: [a]}]);
+
+output.innerHTML += "START2";
         Leap.loop(function (frame) {
 
-          output.innerHTML = "Frame ID: " + frame.id  + "<br />"
-                      + "Hands: " + frame.hands.length + "<br />"
-                      + "Fingers: " + frame.fingers.length + "<br />";;
-    				  sleep(1000);
+          if (frame.pointables.length > 0) {
+/*
+          output.innerHTML += "{input: [" + Math.sqrt(Math.pow(frame.fingers[0].tipPosition[0] - frame.hands[0].palmPosition[0], 2) +
+        Math.pow(frame.fingers[0].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
+      Math.pow(frame.fingers[0].tipPosition[2] - frame.hands[0].palmPosition[2], 2)) +  ", "
+                       + Math.sqrt(Math.pow(frame.fingers[1].tipPosition[0] - frame.hands[0].palmPosition[0], 2) +
+                    Math.pow(frame.fingers[1].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
+                  Math.pow(frame.fingers[1].tipPosition[2] - frame.hands[0].palmPosition[2], 2)) +  ", "
+                       + Math.sqrt(Math.pow(frame.fingers[2].tipPosition[0] - frame.hands[0].palmPosition[0], 2) +
+                    Math.pow(frame.fingers[2].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
+                  Math.pow(frame.fingers[2].tipPosition[2] - frame.hands[0].palmPosition[2], 2)) +  ", "
+                   + Math.sqrt(Math.pow(frame.fingers[3].tipPosition[0] - frame.hands[0].palmPosition[0], 2) +
+                Math.pow(frame.fingers[3].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
+              Math.pow(frame.fingers[3].tipPosition[2] - frame.hands[0].palmPosition[2], 2)) +  ", "
+               + Math.sqrt(Math.pow(frame.fingers[4].tipPosition[0] - frame.hands[0].palmPosition[0], 2) +
+            Math.pow(frame.fingers[4].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
+          Math.pow(frame.fingers[4].tipPosition[2] - frame.hands[0].palmPosition[2], 2)) +  "], output: [a]} <br>";;
+*/
+
+                    output.innerHTML += Math.round(net.run([Math.sqrt(Math.pow(frame.fingers[0].tipPosition[0] - frame.hands[0].palmPosition[0], 2) +
+                  Math.pow(frame.fingers[0].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
+                Math.pow(frame.fingers[0].tipPosition[2] - frame.hands[0].palmPosition[2], 2)),
+                                 Math.sqrt(Math.pow(frame.fingers[1].tipPosition[0] - frame.hands[0].palmPosition[0], 2) +
+                              Math.pow(frame.fingers[1].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
+                            Math.pow(frame.fingers[1].tipPosition[2] - frame.hands[0].palmPosition[2], 2)),
+                                 Math.sqrt(Math.pow(frame.fingers[2].tipPosition[0] - frame.hands[0].palmPosition[0], 2) +
+                              Math.pow(frame.fingers[2].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
+                            Math.pow(frame.fingers[2].tipPosition[2] - frame.hands[0].palmPosition[2], 2)),
+                             Math.sqrt(Math.pow(frame.fingers[3].tipPosition[0] - frame.hands[0].palmPosition[0], 2) +
+                          Math.pow(frame.fingers[3].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
+                        Math.pow(frame.fingers[3].tipPosition[2] - frame.hands[0].palmPosition[2], 2)),
+                         Math.sqrt(Math.pow(frame.fingers[4].tipPosition[0] - frame.hands[0].palmPosition[0], 2) +
+                      Math.pow(frame.fingers[4].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
+                    Math.pow(frame.fingers[4].tipPosition[2] - frame.hands[0].palmPosition[2], 2))]));
+                  }
+                  sleep(1000);
         });
-
-    	var net = new brain.NeuralNetwork();
-    	var net2 = new brain.NeuralNetwork();
-
-    	var x =1.05;
-
-    	net.train([{input: [1, 0, 1], output: [x]},
-    	           {input: [1, 0, 1], output: [x]},
-    		         {input: [1, 0, 1], output: [x]},
-    	           {input: [1, 0, 1], output: [x]},
-    	           {input: [1, 0, 1], output: [x]},
-    		         {input: [1, 0, 1], output: [x]},
-    	           {input: [1, 0, 1], output: [x]},
-    	           {input: [1, 0, 1], output: [x]},
-                 {input: [1, 0, 1], output: [x]},
-    	           {input: [1, 0, 1], output: [x]},
-    		         {input: [1, 0, 1], output: [x]},
-    	           {input: [1, 0, 1], output: [x]},
-    	           {input: [1, 0, 1], output: [x]},
-    		         {input: [1, 0, 1], output: [x]},
-    	           {input: [1, 0, 1], output: [x]},
-    	           {input: [1, 0, 1], output: [x]}]);
-    	output.innerHTML = net.run([1, 0, 1]);
     </script>
   </head>
 </html>
