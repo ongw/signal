@@ -1,7 +1,44 @@
-<em>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>signal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" contentint="">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+
+    <title>ASL Alphabet Detector</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/soon.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+      <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- START HEADER -->
+    <section id="header">
+        <div class="container">
+            <header>
+                <!-- HEADLINE -->
+                <h1 data-animated="GoIn"><b>ASL</b> Alphabet Sensor </h1>
+            </header>
+          </div>
+
+  </head>
+
+    <body>
+
 	  <script src="brain-0.6.3.js"></script>
     <script src="https://js.leapmotion.com/leap-0.6.4.js"></script>
     <div id=output></div>
@@ -16,7 +53,8 @@
     	    }
     	  }
     	}
-      output.innerHTML = "START1";
+
+      output.innerHTML = "<span style='font-size:40px'>" + "START1" + "</span>";
       var net1 = new brain.NeuralNetwork({
           hiddenLayers: [5, 5],
           learningRate: 0.6
@@ -29,6 +67,7 @@
         hiddenLayers: [5, 5],
         learningRate: 0.6
       });
+
       var a1 = 0;
       var c1 = 0;
       var b1 = 1;
@@ -156,6 +195,7 @@
         var f2 = 1;
         var g2 = 0;
         var h2 = 1;
+
         net2.train([ {input: [0.5818564787952782, 0.3766804304410438, 0.40235434911795126, 0.3600754810584027, 0.3030149972932695], output: [a2]},
                      {input: [0.5765663460123215, 0.4120950437495699, 0.41268795253353147, 0.35922782943558246, 0.3060750747855825], output: [a2]},
                      {input: [0.6026550552098605, 0.37881478994655154, 0.39171021692654373, 0.3594045836998881, 0.3198917157101757], output: [a2]},
@@ -265,6 +305,7 @@
                     {input: [0.4424054414900431, 0.9009919312052688, 0.9248860502402445, 0.4684707041845947, 0.4405223723870219], output: [h2]},
                     {input: [0.44855340554943957, 0.8985488730280619, 0.9273018299108442, 0.47814006883238735, 0.4530167850583907], output: [h2]},
                      {input: [0.5360454427894057, 0.44311564306838114, 0.47600025940808066, 0.40123844195292413, 0.35112615765601973], output: [a2]}]);
+
         var a3 = 0;
         var b3 = 0;
         var c3 = 0;
@@ -273,6 +314,7 @@
         var f3 = 1;
         var g3 = 1;
         var h3 = 1;
+
         net3.train([ {input: [0.5818564787952782, 0.3766804304410438, 0.40235434911795126, 0.3600754810584027, 0.3030149972932695], output: [a3]},
                     {input: [0.5765663460123215, 0.4120950437495699, 0.41268795253353147, 0.35922782943558246, 0.3060750747855825], output: [a3]},
                     {input: [0.6026550552098605, 0.37881478994655154, 0.39171021692654373, 0.3594045836998881, 0.3198917157101757], output: [a3]},
@@ -383,7 +425,7 @@
                     {input: [0.44855340554943957, 0.8985488730280619, 0.9273018299108442, 0.47814006883238735, 0.4530167850583907], output: [h3]},
                     {input: [0.5360454427894057, 0.44311564306838114, 0.47600025940808066, 0.40123844195292413, 0.35112615765601973], output: [a3]}]);
 
-        output.innerHTML += "START2 <br>";
+        output.innerHTML += "<span style='font-size:40px'>" + "START2 " + "</span>" + "<br>";
         var net1Result = 0;
         var net2Result = 0;
         Leap.loop(function (frame) {
@@ -451,40 +493,41 @@
                             Math.pow(frame.fingers[4].tipPosition[1] - frame.hands[0].palmPosition[1], 2) +
                             Math.pow(frame.fingers[4].tipPosition[2] - frame.hands[0].palmPosition[2], 2))/100]));
 
-              output.innerHTML += net3Result + " " + net1Result + " " + net2Result + "<br>";
+
+              output.innerHTML += "<span style='font-size:40px'>" + net3Result + " " + net1Result + " " + net2Result + "</span>" + "<br>";
               if (net3Result == 0) {
                 if (net1Result == 0) {
                   if (net2Result == 0) {
-                    output.innerHTML += "A <br>";
+                    output.innerHTML += "<span style='font-size:40px'>" + "A" + "</span>" + "<br>";
                   }
                   else {
-                    output.innerHTML += "C <br>";
+                    output.innerHTML += "<span style='font-size:40px'>" + "C" + "</span>" + "<br>";
                   }
                 }
                 else {
                   if (net2Result == 0) {
-                    output.innerHTML += "D <br>";
+                    output.innerHTML += "<span style='font-size:40px'>" + "D" + "</span>" + "<br>";
                   }
                   else {
-                    output.innerHTML += "B <br>";
+                    output.innerHTML += "<span style='font-size:40px'>" + "B" + "</span>" + "<br>";
                   }
                 }
               }
               else {
                 if (net1Result == 0) {
                   if (net2Result == 0) {
-                    output.innerHTML += "E <br>";
+                    output.innerHTML += "<span style='font-size:40px'>" + "E" + "</span>" + "<br>";
                   }
                   else {
-                    output.innerHTML += "F <br>";
+                    output.innerHTML += "<span style='font-size:40px'>" + "F" + "</span>" + "<br>";
                   }
                 }
                 else {
                   if (net2Result == 0) {
-                    output.innerHTML += "G <br>";
+                    output.innerHTML += "<span style='font-size:40px'>" + "G" + "</span>" + "<br>";
                   }
                   else {
-                    output.innerHTML += "H <br>";
+                    output.innerHTML += "<span style='font-size:40px'>" + "H" + "</span>" + "<br>";
                   }
                 }
               }
@@ -492,7 +535,22 @@
 
             sleep(2000);
         });
+
+
     </script>
-  </head>
+
+  <!-- LAYER OVER THE SLIDER TO MAKE THE WHITE TEXTE READABLE -->
+  <div id="layer"></div>
+  <!-- END LAYER -->
+</section>
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/modernizr.custom.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/soon/plugins.js"></script>
+    <script src="assets/js/soon/jquery.themepunch.revolution.min.js"></script>
+    <script src="assets/js/soon/custom.js"></script>
+  </body>
+
 </html>
-</em>
